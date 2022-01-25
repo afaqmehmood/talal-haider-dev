@@ -1,0 +1,7 @@
+<ul class="collection__sidebar">
+    {%- for link in side_menu.links -%}
+        <li class="collection__sidebar--list-item{% if link.url == collection.url %} active{% endif %}">
+            <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+    {%- endfor -%}
+</ul>

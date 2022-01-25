@@ -1,0 +1,20 @@
+// retrieve color from $colors map ie. `color(base, primary)`
+@function color($color-name, $color-variant:null) {
+  // color variant is optional
+  @if ($color-variant != null) {
+    // map inception
+    @return map-get(map-get($colors, $color-name), $color-variant);
+  } @else {
+    @return map-get($colors, $color-name);
+  }
+}
+
+// turns number into negative
+@function negative($num) {
+ @return 0 - $num;
+}
+
+// turns number into half the negative
+@function half-negative($num) {
+ @return negative($num / 2);
+}

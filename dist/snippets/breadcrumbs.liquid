@@ -1,0 +1,70 @@
+{% assign separator = ' > ' %}
+
+<nav class="breadcrumbs{%- if class %} {{ class }}{%- endif %}" role="navigation">
+    <ul class="flex{% unless align != 'center' %} f-center{% endunless %}{%- if list_class %} {{ list_class }}{%- endif %}">
+        <li>
+            <a href="{{ shop.url }}">
+                <span>Home</span>
+            </a>
+            <span class="breadcrumbs-separator">{{ separator }}</span>
+        </li>
+        {%- if template contains 'page' -%}
+            <li>
+                <span>{{ page.title }}</span>
+            </li>
+        {%- elsif template contains 'cart' -%}
+            <li>
+                <span>Basket</span>
+            </li>
+        {%- elsif template contains 'product' -%}
+            <li>
+                <span>{{ product.title }}</span>
+            </li>
+        {%- elsif template contains 'collection' and collection.handle -%}
+            <li>
+                {%- if current_tags -%}<a href="/collections/{{ collection.handle }}">{%- endif -%}
+                    <span>{{ collection.title }}</span>
+                {%- if current_tags -%}</a>{%- endif -%}
+            </li>
+            {%- if current_tags -%}
+            <span class="breadcrumbs-separator">{{ separator }}</span>
+            <li>
+                <a href="/collections/{{ collection.handle }}/{{ current_tags }}">
+                    <span>{{ current_tags | join: " + " }}</span>
+                </a>
+            </li>
+            {%- endif -%}
+        {%- elsif template == 'blog' -%}
+            <li>
+                {%- if current_tags -%}<a href="{{ blog.url }}">{%- endif -%}
+                    <span>{{ blog.title }}</span>
+                {%- if current_tags -%}</a>{%- endif -%}
+            </li>
+            {%- if current_tags -%}
+                <span class="breadcrumbs-separator">{{ separator }}</span>
+                <li>
+                    <a href="{{ blog.url }}/tagged/{{ current_tags }}">
+                        <span>{{ current_tags | join: " + " }}</span>
+                    </a>
+                </li>
+            {%- endif -%}
+        {%- elsif template == 'article' -%}
+            <li>
+                <a href="{{ blog.url }}">
+                    <span>{{ blog.title }}</span>
+                </a>
+            </li>
+            <span class="breadcrumbs-separator">{{ separator }}</span>
+            <li>
+                <span>{{ article.title }}</span>
+            </li>
+        {%- else -%}
+            <li>
+                <span>{{ page.title }}</span>
+            </li>
+        {%- endif -%}
+    </ul>
+</nav>
+
+
+{%- include 'marketing', get: 'breadcrumbs' -%}

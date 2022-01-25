@@ -1,0 +1,27 @@
+{% liquid
+    assign article_image_dimensions = '100x100'
+    assign article_excerpt_length = 45
+    assign article_excerpt = article.content | strip_html | truncatewords: article_excerpt_length
+    if article.excerpt != blank
+        assign article_excerpt = article.excerpt | strip_html | truncatewords: article_excerpt_length
+    endif
+%}
+
+<div class="{% if class %}{{ class }} {% endif %}article-item">
+    {%- if article.image -%}
+        <a href="{{ article.url }}" class="article-item__image object-cover">
+            {% if article.image contains '.jpg' %}
+                <img data-preload="{{ article.image | img_url: article_image_dimensions, format: 'pjpg' }}" src="{{ article.image | img_url: '50x', format: 'pjpg' }}" alt="{{ article.image.alt }}">
+            {% else %}
+                <img data-preload="{{ article.image | img_url: article_image_dimensions }}" src="{{ article.image | img_url: '50x' }}" alt="{{ article.image.alt }}">
+            {% endif %}
+        </a>
+    {%- endif -%}
+    <h2 class="article-item__title title--sm"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+    {%- unless hide_excerpt -%}
+        <div class="article-item__excerpt rte">
+            <p>{{ article_excerpt }}</p>
+        </div>
+    {%- endunless -%}
+    <a href="{{ article.url }}" class="article-item__cta">{{ 'blogs.article.read_more' | t }}</a>
+</div>

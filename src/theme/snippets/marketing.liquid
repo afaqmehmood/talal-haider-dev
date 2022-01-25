@@ -1,0 +1,125 @@
+{%- case get -%}
+    {%- when 'product schema' -%}
+    {%- if template.name == 'product' -%}
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org/",
+                "@type": "Product",
+                "name": "{{ product.title }}",
+                "image": [
+                    {%- for image in product.images -%}
+                        "{{ image | img_url: 'master' }}"{%- unless forloop.last -%}{{ ',' }}{%- endunless -%}
+                    {%- endfor -%}
+                ],
+                "description": {{ product.description | escape | json }},
+                "sku":"{{ product.selected_variant.sku | default: product.id }}",
+                "mpn":"{{ product.id }}",
+                "brand":{
+                    "@type":"Thing",
+                    "name":"{{ shop.name }}"
+                },
+                "offers":{
+                    "@type":"Offer",
+                    "url":"{{ product.url }}",
+                    "priceCurrency":"{{ shop.currency }}",
+                    "price":"{{ product.price | divided_by: 100 }}",
+                    "itemCondition":"https://schema.org/NewCondition",
+                    "availability":"https://schema.org/{%- if product.available -%}InStock{%- else -%}OutOfStock{%- endif -%}",
+                    "seller":{
+                        "@type":"Organization",
+                        "name":"{{ shop.name }}"
+                    }
+                }
+            }
+        </script>
+    {%- endif -%}
+
+    {%- when 'breadcrumbs' -%}
+    <script type="application/ld+json">
+        {
+            "@context":"https://schema.org",
+            "@type":"BreadcrumbList",
+            "itemListElement":[
+                {
+                "@type":"ListItem",
+                "position":1,
+                "name":"Home",
+                "item":"{{ shop.url }}/"
+                }
+                {%- if template contains 'page' -%}
+                    ,{
+                        "@type":"ListItem",
+                        "position":2,
+                        "name":"{{ page.title }}",
+                        "item":"{{ shop.url }}{{ page.url }}"
+                    }
+                {%- elsif template contains 'cart' -%}
+                    ,{
+                        "@type":"ListItem",
+                        "position":2,
+                        "name":"Basket",
+                        "item":"{{ shop.url }}/cart"
+                    }
+                {%- elsif template contains 'product' -%}
+                    ,{
+                        "@type":"ListItem",
+                        "position":2,
+                        "name":"{{ product.title }}",
+                        "item":"{{ shop.url }}{{ product.url }}"
+                    }
+                {%- elsif template contains 'collection' and collection.handle -%}
+                    ,{
+                        "@type":"ListItem",
+                        "position":2,
+                        "name":"{{ collection.title }}",
+                        "item":"{{ shop.url }}{{ collection.url }}"
+                    }
+                    {%- if current_tags -%}
+                        ,{
+                            "@type":"ListItem",
+                            "position":3,
+                            "name":"{{ current_tags | join: " + " }}",
+                            "item":"{{ shop.url }}/collections/{{ collection.handle }}/{{ current_tags }}"
+                        }
+                    {%- endif -%}
+                {%- elsif template == 'blog' -%}
+                    ,{
+                        "@type":"ListItem",
+                        "position":2,
+                        "name":"{{ blog.title }}",
+                        "item":"{{ shop.url }}{{ blog.url }}"
+                    }
+                    {%- if current_tags -%}
+                        ,{
+                            "@type":"ListItem",
+                            "position":3,
+                            "name":"{{ current_tags | join: " + " }}",
+                            "item":"{{ shop.url }}{{ blog.url }}/tagged/{{ current_tags }}"
+                        }
+                    {%- endif -%}
+                {%- elsif template == 'article' -%}
+                    ,{
+                        "@type":"ListItem",
+                        "position":2,
+                        "name":"{{ blog.title }}",
+                        "item":"{{ shop.url }}{{ blog.url }}"
+                    },
+                    {
+                        "@type":"ListItem",
+                        "position":3,
+                        "name":"{{ article.title }}",
+                        "item":"{{ shop.url }}{{ article.url }}"
+                    }
+                {%- else -%}
+                    ,{
+                        "@type":"ListItem",
+                        "position":2,
+                        "name":"{{ page.title }}",
+                        "item":"{{ shop.url }}{{ page.url }}"
+                    }
+                {%- endif -%}
+            ]
+        }
+    </script>
+
+{%- endcase -%}

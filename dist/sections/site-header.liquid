@@ -1,0 +1,60 @@
+{%- assign navigation_menu = linklists[section.settings.navigation_menu] -%}
+
+
+<a href="/" title="{{ shop.name }}" class="site-header__logo" itemscope itemtype="http://schema.org/Organization">
+    {%- include 'icons', icon: 'logo' -%}
+</a>
+
+<nav class="site-header__nav" role="main">
+    <ul class="flex">
+        {% for link in navigation_menu.links %}
+            {% assign parent_link = link %}
+            <li class="site-header__nav-link {% if link.links.size > 0 %} parent-link{% endif %}">
+                <a href="{{ link.url }}">{{ link.title | split: '[' | first }}</a>
+                {%- if link.links.size > 0 -%}
+                    {%- include 'megamenu' -%}
+                {%- endif -%}
+            </li>
+        {% endfor %}
+    </ul>
+</nav>
+
+{%- include 'user-menu' class: 'site-header__user-menu' -%}
+
+{% schema %}
+{
+    "name":"Site Header",
+    "class": "site-header__main container flex f-vertical-center f-space-between",
+    "settings":[
+        {
+            "type":"link_list",
+            "id":"navigation_menu",
+            "label":"Navigation Menu"
+        }
+    ],
+    "blocks":[
+        {
+            "type":"megamenu",
+            "name":"Megamenu",
+            "settings":[
+                {
+                    "type":"url",
+                    "id":"matching_parent_link",
+                    "label":"Matching Parent Link",
+                    "info":"Select the parent/main nav link that this megamenu belongs to."
+                },
+                {
+                    "type":"text",
+                    "id":"title",
+                    "label":"Title"
+                },
+                {
+                    "type":"image_picker",
+                    "id":"image",
+                    "label":"Image"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

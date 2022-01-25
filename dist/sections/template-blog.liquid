@@ -1,0 +1,28 @@
+{%- paginate blog.articles by section.settings.paginate_by -%}
+    <ul class="blog__grid grid--4">
+        {%- for article in blog.articles -%}
+            {%- render 'article-item', article: article -%}
+        {%- endfor -%}
+    </ul>
+    {%- include 'pagination' -%}
+{%- endpaginate -%}
+
+
+{% schema %}
+{
+    "name":"Blog",
+    "tag": "section",
+    "class": "blog container",
+    "settings":[
+        {
+            "type":"range",
+            "id":"paginate_by",
+            "min":2,
+            "max":24,
+            "step":2,
+            "label":"Paginate by",
+            "default":12
+        }
+    ]
+}
+{% endschema %}

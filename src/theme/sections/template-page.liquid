@@ -1,0 +1,19 @@
+{% include "breadcrumbs", class: 'container' %}
+
+<h1 class="title--md">{{ page.title }}</h1>
+
+<div class="page__content rte">
+    {{ page.content }}
+</div>
+
+
+{% schema %}
+{
+  "name": "Standard Page Template",
+  "tag": "section",
+  "class": "page container",
+  "settings": [
+
+  ]
+}
+{% endschema %}

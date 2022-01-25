@@ -1,0 +1,399 @@
+[
+    {
+        "name":"Site",
+        "settings":[
+            {
+                "type":"image_picker",
+                "id":"favicon",
+                "label":"Favicon",
+                "info":"32x32"
+            }
+        ]
+    },
+    {
+        "name":"SEO",
+        "settings":[
+            {
+                "type":"textarea",
+                "id":"page_description",
+                "label":"Meta page description",
+                "info":"Info: https://moz.com/learn/seo/meta-description"
+            }
+        ]
+    },
+    {
+        "name":"Promo bar",
+        "settings":[
+            {
+                "type":"checkbox",
+                "id":"enable_promo",
+                "label":"Enable",
+                "default":true
+            }
+        ]
+    },
+    {
+        "name":"UI",
+        "settings":[
+            {
+                "type":"header",
+                "content":"Base Colours"
+            },
+            {
+                "type":"color",
+                "id":"color_black",
+                "label":"Black",
+                "default":"#000000"
+            },
+            {
+                "type":"color",
+                "id":"color_white",
+                "label":"white",
+                "default":"#ffffff"
+            },
+            {
+                "type":"color",
+                "id":"color_success",
+                "label":"Success",
+                "default":"#00ba48"
+            },
+            {
+                "type":"color",
+                "id":"color_warning",
+                "label":"Warning",
+                "default":"#f36d29"
+            },
+            {
+                "type":"color",
+                "id":"color_error",
+                "label":"Error",
+                "default":"#d0021b"
+            },
+            {
+                "type":"header",
+                "content":"Greys"
+            },
+            {
+                "type":"color",
+                "id":"color_grey_dark",
+                "label":"Dark",
+                "default":"#292d2b"
+            },
+            {
+                "type":"color",
+                "id":"color_grey_mid",
+                "label":"Mid",
+                "default":"#5a5a5a"
+            },
+            {
+                "type":"color",
+                "id":"color_grey_light",
+                "label":"Light",
+                "default":"#c3c4c3"
+            },
+            {
+                "type":"header",
+                "content":"Accent Colours"
+            },
+            {
+                "type":"color",
+                "id":"color_primary",
+                "label":"Primary colour",
+                "default":"#00aba2"
+            },
+            {
+                "type":"color",
+                "id":"color_secondary",
+                "label":"Secondary colour",
+                "default":"#000000"
+            }
+        ]
+    },
+    {
+        "name":"Typography",
+        "settings":[
+            {
+                "type":"header",
+                "content":"Font sizes"
+            },
+            {
+                "type":"header",
+                "content":"XL Title"
+            },
+            {
+                "type":"range",
+                "id":"font_size_title_xl",
+                "label":"Extra Large title",
+                "default":60,
+                "min":20,
+                "max":100,
+                "step":1,
+                "unit":"px"
+            },
+            {
+                "type":"range",
+                "id":"font_size_title_xl_mobile",
+                "label":"Extra Large title (Mobile)",
+                "default":40,
+                "min":20,
+                "max":100,
+                "step":1,
+                "unit":"px"
+            },
+            {
+                "type":"header",
+                "content":"Large Title"
+            },
+            {
+                "type":"range",
+                "id":"font_size_title_lg",
+                "label":"Large title",
+                "default":40,
+                "min":20,
+                "max":100,
+                "step":1,
+                "unit":"px"
+            },
+            {
+                "type":"range",
+                "id":"font_size_title_lg_mobile",
+                "label":"Large title (Mobile)",
+                "default":20,
+                "min":20,
+                "max":100,
+                "step":1,
+                "unit":"px"
+            },
+            {
+                "type":"header",
+                "content":"Medium Title"
+            },
+            {
+                "type":"range",
+                "id":"font_size_title_md",
+                "label":"Medium title",
+                "default":22,
+                "min":20,
+                "max":100,
+                "step":1,
+                "unit":"px"
+            },
+            {
+                "type":"range",
+                "id":"font_size_title_md_mobile",
+                "label":"Medium title (Mobile)",
+                "default":18,
+                "min":10,
+                "max":50,
+                "step":1,
+                "unit":"px"
+            },
+            {
+                "type":"header",
+                "content":"Small Title"
+            },
+            {
+                "type":"range",
+                "id":"font_size_title_sm",
+                "label":"Small title",
+                "default":18,
+                "min":10,
+                "max":100,
+                "step":1,
+                "unit":"px"
+            },
+            {
+                "type":"range",
+                "id":"font_size_title_sm_mobile",
+                "label":"Small title (Mobile)",
+                "default":16,
+                "min":10,
+                "max":50,
+                "step":1,
+                "unit":"px"
+            },
+            {
+                "type":"header",
+                "content":"XS Title"
+            },
+            {
+                "type":"range",
+                "id":"font_size_title_xs",
+                "label":"Extra small title",
+                "default":12,
+                "min":10,
+                "max":50,
+                "step":1,
+                "unit":"px"
+            },
+            {
+                "type":"range",
+                "id":"font_size_title_xs_mobile",
+                "label":"Extra small title (Mobile)",
+                "default":12,
+                "min":10,
+                "max":50,
+                "step":1,
+                "unit":"px"
+            },
+            {
+                "type":"header",
+                "content":"Large Body Copy"
+            },
+            {
+                "type":"range",
+                "id":"font_size_body_lg",
+                "label":"Large Body copy",
+                "default":16,
+                "min":1,
+                "max":30,
+                "step":1,
+                "unit":"px"
+            },
+            {
+                "type":"range",
+                "id":"font_size_body_lg_mobile",
+                "label":"Large Body copy (Mobile)",
+                "default":16,
+                "min":1,
+                "max":30,
+                "step":1,
+                "unit":"px"
+            },
+            {
+                "type":"header",
+                "content":"Medium Body Copy"
+            },
+            {
+                "type":"range",
+                "id":"font_size_body_md",
+                "label":"Medium Body copy",
+                "default":14,
+                "min":1,
+                "max":30,
+                "step":1,
+                "unit":"px"
+            },
+            {
+                "type":"range",
+                "id":"font_size_body_md_mobile",
+                "label":"Medium Body copy (Mobile)",
+                "default":14,
+                "min":1,
+                "max":30,
+                "step":1,
+                "unit":"px"
+            },
+            {
+                "type":"header",
+                "content":"Small Body Copy"
+            },
+            {
+                "type":"range",
+                "id":"font_size_body_sm",
+                "label":"Small body copy",
+                "default":10,
+                "min":1,
+                "max":30,
+                "step":1,
+                "unit":"px"
+            },
+            {
+                "type":"range",
+                "id":"font_size_body_sm_mobile",
+                "label":"Small body copy (Mobile)",
+                "default":10,
+                "min":1,
+                "max":30,
+                "step":1,
+                "unit":"px"
+            }
+        ]
+    },
+    {
+        "name":"Company information",
+        "settings":[
+            {
+                "type":"header",
+                "content":"Contact information"
+            },
+            {
+                "type":"text",
+                "id":"contact_email",
+                "label":"Email"
+            },
+            {
+                "type":"text",
+                "id":"contact_tel",
+                "label":"Telephone number"
+            },
+            {
+                "type":"richtext",
+                "id":"contact_address",
+                "label":"Address"
+            },
+            {
+                "type":"header",
+                "content":"Social Media"
+            },
+            {
+                "type":"url",
+                "id":"facebook_url",
+                "label":"Facebook URL"
+            },
+            {
+                "type":"url",
+                "id":"twitter_url",
+                "label":"Twitter URL"
+            },
+            {
+                "type":"url",
+                "id":"instagram_url",
+                "label":"Instagram URL"
+            },
+            {
+                "type":"url",
+                "id":"pinterest_url",
+                "label":"Pinterest URL"
+            },
+            {
+                "type":"url",
+                "id":"youtube_url",
+                "label":"Youtube URL"
+            },
+            {
+                "type":"url",
+                "id":"snapchat_url",
+                "label":"Snapchat URL"
+            },
+            {
+                "type":"url",
+                "id":"tiktok_url",
+                "label":"TikTok URL"
+            }
+        ]
+    },
+    {
+        "name":"Site Scripts",
+        "settings":[
+            {
+                "type":"header",
+                "content":"Head Scripts"
+            },
+            {
+                "type":"html",
+                "id":"head_scripts",
+                "label":"Scripts"
+            },
+            {
+                "type":"header",
+                "content":"Footer Scripts"
+            },
+            {
+                "type":"html",
+                "id":"footer_scripts",
+                "label":"Scripts"
+            }
+        ]
+    }
+]

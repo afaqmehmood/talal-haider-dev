@@ -1,0 +1,12 @@
+.btn {
+    @include flexbox
+    @include align-items(center)
+    @include justify-content(center)
+    cursor:pointer;
+
+    @include hover {
+        &:not(:disabled) {
+            
+        }
+    }
+}

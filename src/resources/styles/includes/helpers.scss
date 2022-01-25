@@ -1,0 +1,57 @@
+.flex {
+    @include flexbox;
+
+    &.f-inline {
+        @include inline-flex;
+    }
+
+    > * {
+        &.grow {
+            @include flex-grow(1);
+        }
+    }
+
+    &.f-center {
+        @include justify-content(center);
+    }
+
+    &.f-space-between {
+        @include justify-content(space-between);
+    }
+
+    &.f-flex-end {
+        @include justify-content(flex-end);
+    }
+    
+    &.f-vertical-center {
+        @include align-items(center);
+    }
+
+    &.f-vertical-bottom {
+        @include align-items(flex-end);
+    }
+
+    &.f-dir-column {
+        @include flex-direction(column);
+    }
+
+    &.f-dir-reverse {
+        @include flex-direction(row-reverse);
+    }
+
+    &.f-wrap {
+        @include flex-wrap(wrap);
+    }
+
+    &.f-equal-width {
+        > * {
+            @include flex;
+        }
+    }
+}
+
+.visually-hidden {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+}

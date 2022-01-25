@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--[if IE 9]> <html class="ie9 no-js" lang="{{ shop.locale }}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{ shop.locale }}"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_button }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon != blank -%}
+        <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+    {%- endif -%}
+
+    {%- capture seo_title -%}
+        {{ page_title }}
+        {%- if current_tags -%}
+            {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}
+        {%- endif -%}
+        {%- if current_page != 1 -%}
+            &ndash; {{ 'general.meta.page' | t: page: current_page }}
+        {% endif -%}
+        {% unless page_title contains shop.name -%}
+            &ndash; {{ shop.name }}
+        {% endunless -%}
+    {% endcapture -%}
+    <title>{{ seo_title | strip }}</title>
+
+    {% if page_description -%}
+        <meta name="description" content="{{ page_description | escape }}">
+    {%- elsif template.name == 'index' and settings.page_description != blank -%}
+        <meta name="description" content="{{ settings.page_description | escape }}">
+    {%- endif -%}
+
+    {% comment %} No index {% endcomment %}
+    {%- if template.name contains 'blog' and blog.tags != blank -%}
+        <meta name=”robots” content=”noindex, follow”>
+    {%- endif -%}
+
+    {%- include 'social-meta-tags' -%}
+
+    {% comment %} Marketing Schema {% endcomment %}
+    {%- if template.name == 'product' -%}
+        {%- include 'marketing', get: 'product schema' -%}
+    {%- endif -%}
+
+    {% comment %} jQuery for ESC Wishlist app {% endcomment %}
+    {% comment %}{{ 'https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js' | script_tag }}{% endcomment %}
+
+    {% comment %} Head Scripts {% endcomment %}
+    {{ settings.head_scripts }}
+
+    {% comment %} Google fonts {% endcomment %}
+    {{ 'https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap' | stylesheet_tag }}
+
+    {% comment %} ESC Main CSS File {% endcomment %}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    {{ content_for_header }}
+</head>
+<body class="template-{{ template.name }} template-full-{{ template.suffix }}" data-currency="{{ shop.currency }}" data-preloader>
+    <a class="visually-hidden" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+    <header class="site-header">
+        {%- section 'site-header' -%}
+    </header>
+
+    <main class="main-content" id="MainContent" role="main">
+        {{ content_for_layout }}
+    </main>
+
+    <footer class="site-footer">
+        {%- section 'site-footer' -%}
+    </footer>
+
+
+    {% comment %} Footer Scripts {% endcomment %}
+    {{ settings.footer_scripts }}
+
+
+    {% comment %} ESC Main JS File {% endcomment %}
+    {%- include '__salvo' -%}
+    {% if theme.name contains 'MATT-INSTANT' %}{% include '__matt' %}{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<h1 class="collection__title title--md">{{ collection.title }}</h1>
+
+<div class="collection__sorting">
+    {% render "sort-by" %}
+</div>
+
+{%- paginate collection.products by section.settings.paginate_by -%}
+    <ul class="collection__product-grid grid--4">
+        {%- for product in collection.products -%}
+            {%- render 'product-item', product: product -%}
+        {%- endfor -%}
+    </ul>
+    {%- render 'pagination' load_more: true, infinite_load: true -%}
+{%- endpaginate -%}
+
+
+{% schema %}
+{
+    "name":"Collection",
+    "tag": "section",
+    "class": "collection container",
+    "settings":[
+        {
+            "type":"range",
+            "id":"paginate_by",
+            "min":3,
+            "max":24,
+            "step":3,
+            "label":"Paginate by",
+            "default":12
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,115 @@
+{%- assign navigation_menu = linklists[section.settings.footer_menu] -%}
+{%- assign legal_menu = linklists[section.settings.legal_menu] -%}
+
+
+<nav class="footer__nav">
+    <ul class="flex f-space-between">
+        {% for link in navigation_menu.links %}
+            <li class="footer__nav-column">
+                <h2 class="footer__nav-column-title title--xs">
+                    {%- if link.url != '#' -%}
+                        <a href="{{ link.url }}">
+                    {%- endif -%}
+                    {{ link.title | split: '[' | first }}
+                    {%- if link.url != '#' -%}
+                        </a>
+                    {%- endif -%}
+                </h2>
+                {%- if link.links.size > 0 -%}
+                    <ul class="footer__nav-list">
+                        {%- for link in link.links -%}
+                            <li class="footer__nav-list-item">
+                                <a class="footer__nav-link" href="{{ link.url }}">{{ link.title | split: '[' | first }}</a>
+                            </li>
+                        {%- endfor -%}
+                    </ul>
+                {%- endif -%}
+            </li>
+        {% endfor %}
+    </ul>
+</nav>
+
+
+{%- if section.settings.enable_social_icons -%}
+    {%- include 'social-icons', class: 'footer__social-icons' -%}
+{%- endif -%}
+
+<div class="footer__bottom flex f-space-between f-vertical-center sm container">
+    {% assign current_year = "now" | date: "%Y" %}
+    <p class="footer__bottom-legal">&copy; {{ section.settings.copyright_text | replace: '[year]', current_year }}</p>
+
+    {%- if section.settings.enable_payment_icons and section.settings.payment_icons != blank -%}
+        <img class="footer__bottom-payment" data-preload="{{ section.settings.payment_icons | img_url: 'x80' }}" src="{{ section.settings.payment_icons | img_url: '10x' }}" alt="payment-icons">
+    {%- endif -%}
+
+    {%- if legal_menu -%}
+        <ul class="footer__bottom-nav flex">
+            {% for link in legal_menu.links %}
+                <li class="footer__bottom-nav-list-item">
+                    <a class="footer__bottom-nav--link cta--secondary" href="{{ link.url }}">{{ link.title | split: '[' | first }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {%- endif -%}
+
+</div>
+
+
+{% schema %}
+{
+    "name":"Site Footer",
+    "class":"shopify-section--footer container",
+    "settings":[
+        {
+            "type":"header",
+            "content":"Menus"
+        },
+        {
+            "type":"link_list",
+            "id":"footer_menu",
+            "label":"Footer Menu"
+        },
+        {
+            "type":"link_list",
+            "id":"legal_menu",
+            "label":"Legal Menu"
+        },
+        {
+            "type":"header",
+            "content":"Contact"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_social_icons",
+            "label": "Enable social icons",
+            "default": true
+        },
+        {
+            "type":"header",
+            "content":"Payment"
+        },
+        {
+            "type":"checkbox",
+            "id":"enable_payment_icons",
+            "label":"Enable payment icons",
+            "default":true
+        },
+        {
+            "type": "image_picker",
+            "id": "payment_icons",
+            "label": "Payment icons"
+        },
+        {
+            "type":"header",
+            "content":"Legal"
+        },
+        {
+          "type": "text",
+          "id": "copyright_text",
+          "label": "Copyright text",
+          "default": "[year] All Rights Reserved.",
+          "info": "Enter [year] to insert current calendar year."
+        }
+    ]
+}
+{% endschema %}

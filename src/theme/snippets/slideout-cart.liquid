@@ -1,0 +1,61 @@
+{% capture wrapper_change_class %}
+[
+    {
+        "elem":"body",
+        "class":"cart-open",
+        "action":"remove",
+        "targetOnly": true
+    },
+    {
+        "elem":".slideout-cart__wrapper",
+        "class":"infront",
+        "action":"remove",
+        "delay":300,
+        "targetOnly": true
+    }
+]
+{% endcapture %}
+{% capture close_button_change_class %}
+[
+    {
+        "elem":"body",
+        "class":"cart-open",
+        "action":"remove"
+    },
+    {
+        "elem":".slideout-cart__wrapper",
+        "action":"remove",
+        "class":"infront",
+        "delay":300
+    }
+]
+{% endcapture %}
+
+<div class="slideout-cart__wrapper" data-change-class='{{ wrapper_change_class }}'>
+    <div class="slideout-cart{% if cart.item_count == 0 %} slideout-cart--empty{% endif %}">
+        <button
+        class="slideout-cart__close close-cross"
+        data-change-class='{{ close_button_change_class }}'
+        >
+        </button>
+
+        <h2 class="slideout-cart__title">{{ 'cart.general.title' | t }}</h2>
+
+        {%- if cart.item_count > 0 -%}
+            <ul class="slideout-cart__list cart-items">
+                {%- for item in cart.items -%}
+                    {%- render 'cart-item', item: item, product: item.product -%}
+                {%- endfor -%}
+            </ul>
+        {%- endif -%}
+
+        <p class="slideout-cart__empty-text">{{ 'cart.general.empty' | t }}</p>
+
+        <div class="slideout-cart__subtotal flex f-vertical-center f-space-between">
+            <h3 class="slideout-cart__subtotal-title">{{ 'cart.general.subtotal' | t }}:</h3>
+            <p class="slideouut-cart__subtotal-price" data-cart-total>{{ cart.total_price | money }}</p>
+        </div>
+
+        <a href="/checkout" class="slideout-cart__cta btn">{{ 'cart.general.checkout' | t }}</a>
+    </div>
+</div>

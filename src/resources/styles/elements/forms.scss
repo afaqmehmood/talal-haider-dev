@@ -1,0 +1,92 @@
+button,
+input,
+textarea {
+    resize: none;
+    border: none;
+    outline: none !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+button {
+    cursor: pointer;
+    margin: 0;
+    width: auto;
+    height: auto;
+}
+
+input[type="number"] {
+    @include plain-number-input
+}
+
+
+@mixin input-default {
+    @include placeholder {}
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+textarea,
+.choices {
+    @include input-default;
+}
+
+[disabled] {
+    cursor: default;
+    opacity: .5
+}
+
+
+/* ---------------------------------------------
+    Radio, Checkbox
+--------------------------------------------- */
+
+$radio-width: 20px;
+$radio-margin-right: 7px;
+$checkbox-border-radius: 3px;
+
+input[type="radio"], input[type="checkbox"] {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    background-color: color(grey, light);
+    color: color(grey, dark);
+    top: 10px;
+    height: $radio-width;
+    width: $radio-width;
+    border: 0;
+    border-radius: 100%;
+    margin-right: $radio-margin-right;
+    outline: none;
+
+    &:checked::before {
+        content:'';
+        position: absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+        margin:auto;
+        background:color(grey, dark);
+        @include circle(30%)
+    }
+
+    &:hover {
+        background-color: color(grey, mid);
+    }
+
+    &:checked {
+        background-color: color(grey, light);
+    }
+}
+input[type="checkbox"] {
+    border-radius: $checkbox-border-radius;
+}

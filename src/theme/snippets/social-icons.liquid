@@ -1,0 +1,66 @@
+{% assign item = product | default: article %}
+
+<ul class="{% if class %}{{ class }} {% endif %}social-icons flex f-vertical-center" itemscope itemtype="https://schema.org/Organization">
+    <link itemprop="url" href="{{ shop.url }}">
+
+    {%- if share -%}
+
+        {% capture share_url %}{{- shop.url -}}{{- item.url -}}{% endcapture %}
+        {% capture facebook_share_url %}https://www.facebook.com/sharer.php?u={{- share_url -}}{% endcapture %}
+        {% capture twitter_share_url %}https://twitter.com/share?url={{- share_url -}}&text={{- item.title | strip | url_encode -}}{% endcapture %}
+        {% capture pinterest_share_url %}https://pinterest.com/pin/create/button/?url={{ share_url }}&media={{ item.image.src }}&description={{ item.excerpt | url_encode }}{% endcapture %}
+
+        {%- if label -%}
+            <h3 class="social-icons__share-title">{{ label }}</h3>
+        {%- endif -%}
+
+        <li class="social-icons__list-item">
+            <a href="{{ twitter_share_url }}" target="_blank" rel="noopener" class="share">{%- include 'icons', icon: 'twitter' -%}</a>
+        </li>
+        <li class="social-icons__list-item">
+            <a href="{{ facebook_share_url }}" target="_blank" rel="noopener" class="share">{%- include 'icons', icon: 'facebook' -%}</a>
+        </li>
+        <li class="social-icons__list-item">
+            <a href="{{ pinterest_share_url }}" target="_blank" rel="noopener" class="share">{%- include 'icons', icon: 'pinterest' -%}</a>
+        </li>
+
+    {%- else -%}
+
+        {%- if settings.youtube_url.size > 0 -%}
+        <li class="social-icons__list-item">
+            <a itemprop="sameAs" href="{{ settings.youtube_url }}" target="_blank" rel="noopener">{%- include 'icons', icon: 'youtube' -%}</a>
+        </li>
+        {%- endif -%}
+        {%- if settings.instagram_url.size > 0 -%}
+        <li class="social-icons__list-item">
+            <a itemprop="sameAs" href="{{ settings.instagram_url }}" target="_blank" rel="noopener">{%- include 'icons', icon: 'instagram' -%}</a>
+        </li>
+        {%- endif -%}
+        {%- if settings.tiktok_url.size > 0 -%}
+        <li class="social-icons__list-item">
+            <a itemprop="sameAs" href="{{ settings.tiktok_url }}" target="_blank" rel="noopener">{%- include 'icons', icon: 'tiktok' -%}</a>
+        </li>
+        {%- endif -%}
+        {%- if settings.facebook_url.size > 0 -%}
+        <li class="social-icons__list-item">
+            <a itemprop="sameAs" href="{{ settings.facebook_url }}" target="_blank" rel="noopener">{%- include 'icons', icon: 'facebook' -%}</a>
+        </li>
+        {%- endif -%}
+        {%- if settings.twitter_url.size > 0 -%}
+        <li class="social-icons__list-item">
+            <a itemprop="sameAs" href="{{ settings.twitter_url }}" target="_blank" rel="noopener">{%- include 'icons', icon: 'twitter' -%}</a>
+        </li>
+        {%- endif -%}
+        {%- if settings.pinterest_url.size > 0 -%}
+        <li class="social-icons__list-item">
+            <a itemprop="sameAs" href="{{ settings.pinterest_url }}" target="_blank" rel="noopener">{%- include 'icons', icon: 'pinterest' -%}</a>
+        </li>
+        {%- endif -%}
+        {%- if settings.snapchat_url.size > 0 -%}
+        <li class="social-icons__list-item">
+            <a itemprop="sameAs" href="{{ settings.snapchat_url }}" target="_blank" rel="noopener">{%- include 'icons', icon: 'snapchat' -%}</a>
+        </li>
+        {%- endif -%}
+
+    {%- endif -%}
+</ul>

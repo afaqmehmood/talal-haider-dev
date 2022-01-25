@@ -1,0 +1,26 @@
+{% assign image_dimensions = '1000x' %}
+
+
+<div class="product__images">
+    {%- for image in product.images -%}
+        <img src="{{ image | img_url: '100x' }}" data-preload='{{ image | img_url: image_dimensions }}' alt="{{ image.alt | default: product.title }}">
+    {%- endfor -%}
+</div>
+
+<div class="product__information">
+    <h1 class="product__title title--lg">{{ product.title }}</h1>
+    {%- render 'product-price', class: 'product__price' -%}
+    {%- render 'product__form', product: product %}
+</div>
+
+
+{% schema %}
+{
+  "name": "Product template",
+  "tag": "section",
+  "class": "product container flex",
+  "settings": [
+
+  ]
+}
+{% endschema %}

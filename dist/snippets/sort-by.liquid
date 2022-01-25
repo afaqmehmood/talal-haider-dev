@@ -1,0 +1,12 @@
+<div class="sort-by{% if class %} {{ class }}{% endif %}">
+    <select name="sort_by" id="sort-by" data-sort-by data-select='{ "classNames": { "containerOuter": "plain choices" } }'>
+        <option value="manual">{{ 'collections.sorting.title' | t }}</option>
+        <option value="best-selling">{{ 'collections.sorting.best_selling' | t }}</option>
+        <option value="title--ascending">{{ 'collections.sorting.az' | t }}</option>
+        <option value="title--descending">{{ 'collections.sorting.za' | t }}</option>
+        <option value="price-ascending">{{ 'collections.sorting.price_ascending' | t }}</option>
+        <option value="price-descending">{{ 'collections.sorting.price_descending' | t }}</option>
+        <option value="created-descending">{{ 'collections.sorting.date_descending' | t }}</option>
+        <option value="created-ascending">{{ 'collections.sorting.date_ascending' | t }}</option>
+    </select>
+</div>

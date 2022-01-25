@@ -1,0 +1,29 @@
+.responsive-table {
+    @include increase-width(10px)
+    position: relative;
+
+    td,
+    th {
+        padding: 5px 10px;
+        text-align: left;
+        vertical-align: top
+    }
+
+    th {
+        padding-bottom: 20px;
+        padding-top: 0;
+    }
+
+    td {
+        font-weight: 300
+    }
+
+    tfoot {
+        font-weight: bold;
+        border-top: 20px solid white;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+}

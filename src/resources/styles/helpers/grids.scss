@@ -1,0 +1,31 @@
+// ------------------------------------------ //
+//    Columns
+// ------------------------------------------ //
+
+@for $i from 2 through 4 {
+    .col-#{$i} {
+        column-count: $i
+    }
+}
+
+
+
+// ------------------------------------------ //
+//    Grid
+// ------------------------------------------ //
+
+.grid {
+    @include flexbox;
+    @include flex-wrap;
+}
+
+@for $i from 2 through 6 {
+    .grid--#{$i} {
+        @extend .grid;
+        > * {
+            @include grid-item-width(100%, $i, ($spacing-sm + 1px)); // minus 1px to fix IE wrap bug
+            margin-left:$spacing-sm / 2;
+            margin-right:$spacing-sm / 2;
+        }
+    }
+}

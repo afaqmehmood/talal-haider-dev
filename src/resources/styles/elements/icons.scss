@@ -1,0 +1,48 @@
+/* ---------------------------------------------
+    Close cross
+--------------------------------------------- */
+
+$close-cross-width: 20px;
+
+.close-cross {
+    width: $close-cross-width;
+    height: $close-cross-width;
+    position: absolute;
+    display: block;
+    padding: 5px;
+    margin-right: -5px;
+    box-sizing: content-box;
+    background: none;
+
+    &::after,
+    &::before {
+        content: '';
+        width: $close-cross-width;
+        height: 1px;
+        background: $color-primary;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        @include transform(rotate(45deg));
+        @include transition($transition-default);
+    }
+
+    &::after {
+        @include transform(rotate(-45deg));
+    }
+
+    &:hover {
+        @include above-tablet {
+            &::before {
+                @include transform(rotate(0deg));
+            }
+
+            &::after {
+                @include transform(rotate(0deg));
+            }
+        }
+    }
+}

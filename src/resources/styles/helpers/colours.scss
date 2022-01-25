@@ -1,0 +1,37 @@
+.primary {
+    color:$color-primary;
+    button,input,a, h1, h2,h3,h4,h5,h6,span,label,p,strong,em,s,li {
+        color:$color-primary;
+    }
+    use {
+        fill:$color-primary
+    }
+}
+
+.secondary {
+    color:$color-secondary;
+    button,input,a, h1, h2,h3,h4,h5,h6,span,label,p,strong,em,s,li {
+        color:$color-secondary;
+    }
+    use {
+        fill:$color-secondary
+    }
+}
+
+.white {
+    color:$white;
+    button,input,a, h1, h2,h3,h4,h5,h6,span,label,p,strong,em,s,li {
+        color:$white;
+    }
+    use {
+        fill:$white
+    }
+}
+
+
+.bg-primary {
+    background: $color-primary;
+}
+.bg-secondary {
+    background: $color-secondary;
+}

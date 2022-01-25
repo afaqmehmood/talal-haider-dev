@@ -1,0 +1,13 @@
+{%- if load_more -%}
+    {% if paginate.next %}
+        <button data-load-more="{{ template.name }}" data-next-page="{{ paginate.next.url }}" class="pagination-btn btn{% if infinite_load %} visually-hidden{% endif %}">Load more</button>
+    {% endif %}
+{%- else -%}
+    {%- if paginate.next or paginate.previous -%}
+        <div class="pagination flex f-center f-vertical-center{% if class %} {{ class }}{% endif %}">
+            {% unless paginate.previous %}<span class="pagination-placeholder"></span>{% endunless %}
+            {{ paginate | default_pagination: next: 'Next page', previous: 'Previous page' }}
+            {% unless paginate.next %}<span class="pagination-placeholder"></span>{% endunless %}
+        </div>
+    {%- endif -%}
+{%- endif -%}

@@ -1,0 +1,30 @@
+.account {
+    padding:$spacing-lg 0;
+
+    .container {
+        width:700px;
+    }
+
+    .errors {
+        margin:50px 0 $spacing-md;
+        ul {
+            list-style: none;
+        }
+        li {
+            margin-bottom: 10px;
+            font-weight: bold
+        }
+    }
+}
+
+
+.account-help-links {
+    margin-top:$spacing-md;
+    li {
+        margin-bottom: 10px
+    }
+    a {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+}

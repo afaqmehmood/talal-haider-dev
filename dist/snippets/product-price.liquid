@@ -1,0 +1,1 @@
+<p class="product-price{% if class %} {{ class }}{% endif %}">{% if product.price < product.compare_at_price %} <span class="product-original-price">{{ product.compare_at_price | money }}</span>{% endif %}<span{% if product.price < product.compare_at_price %} class="product-sale-price sale-text"{% endif %}>{{ product.price | money }}</span></p>

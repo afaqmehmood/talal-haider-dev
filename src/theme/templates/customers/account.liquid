@@ -1,0 +1,59 @@
+<section class="account container dashboard">
+
+    <div class="flex f-space-between f-vertical-bottom m-b-m">
+        <h1 class="title--md">Your account</h1>
+        <a class="title--sm" href="/account/logout">logout</a>
+    </div>
+
+    <h2 class="title--md m-b-s">{{ 'customer.orders.title' | t }}</h2>
+
+    {% paginate customer.orders by 20 %}
+
+        {% if customer.orders.size != 0 %}
+
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th>{{ 'customer.orders.order_number' | t }}</th>
+                        <th>{{ 'customer.orders.date' | t }}</th>
+                        <th>{{ 'customer.orders.payment_status' | t }}</th>
+                        <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                        <th>{{ 'customer.orders.total' | t }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in customer.orders %}
+                    <tr class="responsive-table-row">
+                        <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
+                        <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'month_day_year' }}</td>
+                        <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+                        <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+                        <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        {% else %}
+
+            <p>{{ 'customer.orders.none' | t }}</p>
+
+        {% endif %}
+
+        {% if paginate.pages > 1 %}
+            {% include 'pagination' %}
+        {% endif %}
+
+    {% endpaginate %}
+
+    {% if customer.addresses_count > 0 %}
+        <h2 class="title--md m-t-l m-b-s">{{ 'customer.account.details' | t }}</h2>
+
+        <div class="account-address rte m-b-m">
+            {{ customer.default_address | format_address }}
+        </div>
+
+        <a href="/account/addresses" class="btn">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a>
+    {% endif %}
+
+</section>

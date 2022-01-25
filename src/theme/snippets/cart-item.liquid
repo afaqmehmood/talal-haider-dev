@@ -1,0 +1,13 @@
+{% assign cart_item_image_dimensions = '180x' %}
+
+<div class="cart-item">
+    <a href="{{ item.url }}" class="cart-item__image object-cover">
+        <img src="{{ item.image | img_url: '10x' }}" data-preload="{{ item.image | img_url: cart_item_image_dimensions }}" alt="{{ item.alt | default: item.product.title }}">
+    </a>
+    <div class="cart-item__information">
+        <h3 class="cart-item__title">{{ product.title }}</h3>
+        {%- include 'product-price', product: item, class: 'cart-item__price' -%}
+        {%- include 'product-quantity', class: 'cart-item__quantity' -%}
+        <button class="cart-item__remove" data-cart-update='{ "action": "remove", "variantID": {{ item.variant_id }} }'>X {{ 'cart.general.remove' | t }}</button>
+    </div>
+</div>

@@ -1,0 +1,221 @@
+/* ---------------------------------------------
+    General
+--------------------------------------------- */
+
+body {
+    font-family: $font-primary;
+    color:$black;
+    line-height: normal;
+    font-weight: 400;
+    @include responsive-property-liquid(font-size, font_size_body_md, font_size_body_md_mobile)
+}
+
+
+a {
+    text-decoration: none;
+}
+
+.fnt-pri {
+    font-family: $font-primary;
+}
+.fnt-sec {
+    font-family: $font-secondary;
+}
+
+
+
+
+/* ---------------------------------------------
+    Titles
+--------------------------------------------- */
+
+@mixin title {
+    font-family: $font-primary;
+}
+
+
+// headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @include title
+}
+
+
+// title classes
+.title--xl {
+    @include title
+    @include responsive-property-liquid(font-size, font_size_title_xl, font_size_title_xl_mobile);
+}
+
+.title--lg {
+    @include title
+    @include responsive-property-liquid(font-size, font_size_title_lg, font_size_title_lg_mobile);
+}
+
+.title--md {
+    @include title
+    @include responsive-property-liquid(font-size, font_size_title_md, font_size_title_md_mobile);
+}
+
+.title--sm {
+    @include title
+    @include responsive-property-liquid(font-size, font_size_title_sm, font_size_title_sm_mobile);
+}
+
+.title--xs {
+    @include title
+    @include responsive-property-liquid(font-size, font_size_title_xs, font_size_title_xs_mobile)
+}
+
+
+
+/* ---------------------------------------------
+    Font weights
+--------------------------------------------- */
+
+.bolder {
+    font-weight: 900;
+}
+
+.bold {
+    font-weight: 700
+}
+
+.medium {
+    font-weight: 400;
+}
+
+.light {
+    font-weight: 300
+}
+
+
+
+/* ---------------------------------------------
+    Font sizes
+--------------------------------------------- */
+
+.xs {}
+
+.sm {
+    @include responsive-property-liquid(font-size, font_size_body_sm, font_size_body_sm_mobile)
+    line-height: 16px;
+}
+
+.md {
+    @include responsive-property-liquid(font-size, font_size_body_md, font_size_body_md_mobile)
+    line-height: 28px;
+}
+
+.lg {
+    @include responsive-property-liquid(font-size, font_size_body_lg, font_size_body_lg_mobile);
+    line-height: 30px;
+}
+
+.xl {}
+
+
+
+/* ---------------------------------------------
+    Text transform
+--------------------------------------------- */
+
+.lc {
+    text-transform: lowercase;
+}
+
+.uc {
+    text-transform: uppercase;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+
+
+/* ---------------------------------------------
+    Text alignment
+--------------------------------------------- */
+
+.text-align-left {
+    text-align: left !important;
+}
+
+.text-align-center {
+    text-align: center !important;
+}
+
+.text-align-right {
+    text-align: right !important;
+}
+
+
+
+
+/* ---------------------------------------------
+    RichTextEditor
+--------------------------------------------- */
+
+.rte {
+    line-height: 28px;
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+
+    }
+
+    p {
+        img {
+
+        }
+
+        &:nth-last-of-type(n + 2) {
+
+        }
+    }
+
+    li {
+        line-height: 20px;
+        margin-bottom: 11px;
+    }
+
+    a:not(.btn) {
+        text-decoration: underline;
+        @include transition($transition-default)
+        @include hover {
+            color:$color-primary;
+        }
+    }
+
+    img {
+        display: inline-block;
+    }
+
+    iframe {
+        display: block;
+        width: 100%;
+        margin: $spacing-md 0;
+    }
+
+    // lg
+    &.lg, .lg & {
+        a:not(.btn) {
+        }
+    }
+
+    // sm
+    &.sm, .sm & {
+    }
+}

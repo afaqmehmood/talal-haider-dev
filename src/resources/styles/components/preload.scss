@@ -1,0 +1,10 @@
+[data-preloader] {
+    [data-preload] {
+        @include transition($transition-default, filter 750ms ease 100ms);
+        @include filter(blur(15px));
+
+        &[data-preload="loaded"] {
+            @include filter(blur(0px));
+        }
+    }
+}

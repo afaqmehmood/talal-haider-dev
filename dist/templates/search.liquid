@@ -1,0 +1,31 @@
+<section class="search-results container">
+
+    {% paginate search.results by 12 %}
+
+        {%- if search.results != empty -%}
+
+            <div{% if search.types.size == 1 and search.types.first == 'article' %} class="article-grid"{% else %} class="product-grid" data-product-grid{% endif %}>
+
+                {%- for item in search.results -%}
+
+                    {%- if item.object_type == 'product' -%}
+                        {%- include 'single-product', product: item -%}
+                    {%- else -%}
+                        {%- include 'single-article', article: item -%}
+                    {%- endif -%}
+
+                {%- endfor -%}
+            </div>
+
+            {%- include 'pagination' -%}
+
+        {%- else -%}
+
+            <p class="title--sm m-t-m">{{ settings.empty_search_results_text }}</p>
+            <a href="{{ shop.url }}" class="btn m-t-m">Back to home</a>
+
+        {%- endif -%}
+
+    {%- endpaginate -%}
+
+</section>

@@ -1,0 +1,27 @@
+<section class="article container">
+    <div class="container">
+        <h1 class="article-title title--md">{{ article.title }} </h1>
+
+        <h2 class="grey-medium light">{{ article.published_at | date: "%d.%m.%Y" }}</h2>
+
+        {%- include 'social-icons', share: true -%}
+
+        <article class="rte">
+            {{ article.content }}
+        </article>
+
+        <h2 class="bold uc text-align-center sx article-share-title">Share article</h2>
+        {%- include 'social-icons', share: true -%}
+
+    </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Article template",
+  "settings": [
+
+  ]
+}
+{% endschema %}

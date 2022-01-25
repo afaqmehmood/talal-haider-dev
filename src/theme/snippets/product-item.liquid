@@ -1,0 +1,15 @@
+{% assign image_dimensions = image_dimensions | default: '630x806' %}
+
+<li class="{% if class %}{{ class }} {% endif %}product-item">
+    <a href="{{ product.url }}" class="product-item__image object-cover">
+        {% if product.images.first contains '.jpg' %}
+            <img src="{{ product.featured_image | img_url: '10x', format: 'pjpg' }}" data-preload="{{ product.featured_image | img_url: image_dimensions, format: 'pjpg' }}" alt="{{ product.featured_image.alt | default: product.title }}">
+        {% else %}
+            <img src="{{ product.featured_image | img_url: '10x' }}" data-preload="{{ product.featured_image | img_url: image_dimensions }}" alt="{{ product.featured_image.alt | default: product.title }}">
+        {% endif %}
+    </a>
+    <div class="product-item__info">
+        <h2 class="product-item__title title--xs"><a href="{{ product.url }}">{{ product.title }}</a></h2>
+        {%- render 'product__price', class: 'product-item__price', product: product -%}
+    </div>
+</li>

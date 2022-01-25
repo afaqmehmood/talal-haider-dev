@@ -1,0 +1,605 @@
+@mixin above-large-desktop {
+  @media (min-width: #{$size-large-desktop + 1}) {
+    @content;
+  }
+}
+
+@mixin large-desktop {
+  @media (max-width: #{$size-large-desktop}) {
+    @content;
+  }
+}
+
+@mixin above-medium-desktop {
+  @media (min-width: #{$size-medium-desktop + 1}) {
+    @content;
+  }
+}
+
+@mixin medium-desktop {
+  @media (max-width: #{$size-medium-desktop}) {
+    @content;
+  }
+}
+
+@mixin above-small-desktop {
+  @media (min-width: #{$size-small-desktop + 1}) {
+    @content;
+  }
+}
+
+@mixin small-desktop {
+  @media (max-width: #{$size-small-desktop}) {
+    @content;
+  }
+}
+@mixin above-container {
+  @media (min-width: #{$size-container + 1}) {
+    @content;
+  }
+}
+
+@mixin container {
+  @media (max-width: #{$size-container}) {
+    @content;
+  }
+}
+@mixin above-container-padding {
+  @media (min-width: #{$size-container + $spacing-border + 1}) {
+    @content;
+  }
+}
+
+@mixin container-padding {
+  @media (max-width: #{$size-container + $spacing-border}) {
+    @content;
+  }
+}
+
+@mixin above-tablet {
+  @media (min-width: #{$size-tablet + 1}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$size-tablet}) {
+    @content;
+  }
+}
+
+@mixin above-mobile-large {
+  @media (min-width: #{$size-mobile-large + 1}) {
+    @content;
+  }
+}
+
+@mixin mobile-large {
+  @media (max-width: #{$size-mobile-large}) {
+    @content;
+  }
+}
+
+@mixin above-mobile {
+  @media (min-width: #{$size-mobile + 1}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: #{$size-mobile}) {
+    @content;
+  }
+}
+
+@mixin above-mobile-small {
+  @media (min-width: #{$size-mobile-small + 1}) {
+    @content;
+  }
+}
+
+@mixin mobile-small {
+  @media (max-width: #{$size-mobile-small}) {
+    @content;
+  }
+}
+
+@mixin landscape-mobile {
+    @media only screen
+      and (min-device-width: 320px)
+      and (max-device-width: 900px)
+      and (orientation: landscape) {
+          @content;
+    }
+    @media screen
+      and (device-width: 360px)
+      and (device-height: 640px)
+      and (orientation: landscape) {
+          @content;
+    }
+    @media only screen
+      and (min-device-width: 375px)
+      and (max-device-width: 667px)
+      and (orientation: landscape) {
+          @content;
+    }
+}
+
+@mixin medium-height {
+    @media (max-height:$size-medium-height) {
+        @include above-tablet {
+            @content;
+        }
+    }
+}
+
+@mixin small-height {
+    @media (max-height:$size-small-height) {
+        @include above-tablet {
+            @content;
+        }
+    }
+}
+
+
+@mixin align-items($value: stretch) {
+	@if $value == flex-start {
+		-webkit-box-align: start;
+		-ms-flex-align: start;
+	} @else if $value == flex-end {
+		-webkit-box-align: end;
+		-ms-flex-align: end;
+	} @else {
+		-webkit-box-align: $value;
+		-ms-flex-align: $value;
+	}
+	-webkit-align-items: $value;
+	-moz-align-items: $value;
+	align-items: $value;
+}
+
+@mixin align-self($value: auto) {
+	-webkit-align-self: $value;
+	-moz-align-self: $value;
+	@if $value == flex-start {
+		-ms-flex-item-align: start;
+	} @else if $value == flex-end {
+		-ms-flex-item-align: end;
+	} @else {
+		-ms-flex-item-align: $value;
+	}
+	align-self: $value;
+}
+
+@mixin flexbox($important: false) {
+    @if $important == true {
+        display: -webkit-box !important;
+    	display: -webkit-flex !important;
+    	display: -moz-flex !important;
+    	display: -ms-flexbox !important;
+    	display: flex !important;
+    } @else {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+
+@mixin inline-flex($important: false) {
+    @if $important == true {
+    	display: -webkit-inline-box !important;
+    	display: -webkit-inline-flex !important;
+    	display: -moz-inline-flex !important;
+    	display: -ms-inline-flexbox !important;
+    	display: inline-flex !important;
+    } @else {
+        display: -webkit-inline-box;
+    	display: -webkit-inline-flex;
+    	display: -moz-inline-flex;
+    	display: -ms-inline-flexbox;
+    	display: inline-flex;
+    }
+}
+
+@mixin flex-grow($int: 0) {
+	-webkit-box-flex: $int;
+	-webkit-flex-grow: $int;
+	-moz-flex-grow: $int;
+	-ms-flex-positive: $int;
+	flex-grow: $int;
+}
+
+@mixin flex-shrink($shrink) {
+  -webkit-flex-shrink: $shrink;
+  -moz-flex-shrink: $shrink;
+  -ms-flex-shrink: $shrink;
+  flex-shrink: $shrink;
+}
+
+@mixin flex-basis($value: auto) {
+	-webkit-flex-basis: $value;
+	-moz-flex-basis: $value;
+	-ms-flex-preferred-size: $value;
+	flex-basis: $value;
+}
+
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+	$fg-boxflex: $fg;
+	@if type-of($fg) == 'list' {
+		$fg-boxflex: nth($fg, 1);
+	}
+	-webkit-box-flex: $fg-boxflex;
+	-webkit-flex: $fg $fs $fb;
+	-moz-box-flex: $fg-boxflex;
+	-moz-flex: $fg $fs $fb;
+	-ms-flex: $fg $fs $fb;
+	flex: $fg $fs $fb;
+}
+
+@mixin flex-direction($value: row) {
+	@if $value == row-reverse {
+		-webkit-box-direction: reverse;
+		-webkit-box-orient: horizontal;
+	} @else if $value == column {
+		-webkit-box-direction: normal;
+		-webkit-box-orient: vertical;
+	} @else if $value == column-reverse {
+		-webkit-box-direction: reverse;
+		-webkit-box-orient: vertical;
+	} @else {
+		-webkit-box-direction: normal;
+		-webkit-box-orient: horizontal;
+	}
+	-webkit-flex-direction: $value;
+	-moz-flex-direction: $value;
+	-ms-flex-direction: $value;
+	flex-direction: $value;
+}
+
+@mixin flex-wrap($wrap: wrap) {
+  -webkit-flex-wrap: $wrap;
+     -moz-flex-wrap: $wrap;
+      -ms-flex-wrap: $wrap;
+          flex-wrap: $wrap;
+}
+
+@mixin justify-content($value: flex-start) {
+	@if $value == flex-start {
+		-webkit-box-pack: start;
+		-ms-flex-pack: start;
+	} @else if $value == flex-end {
+		-webkit-box-pack: end;
+		-ms-flex-pack: end;
+	} @else if $value == space-between {
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
+	} @else if $value == space-around {
+		-ms-flex-pack: distribute;
+	} @else {
+		-webkit-box-pack: $value;
+		-ms-flex-pack: $value;
+	}
+	-webkit-justify-content: $value;
+	-moz-justify-content: $value;
+	justify-content: $value;
+}
+
+@mixin order($int: 0) {
+	-webkit-box-ordinal-group: $int + 1;
+	-webkit-order: $int;
+	-moz-order: $int;
+	-ms-flex-order: $int;
+	order: $int;
+}
+
+@mixin no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content;}
+  &:-moz-placeholder           {@content;}
+  &::-moz-placeholder          {@content;}
+  &:-ms-input-placeholder      {@content;}
+  &::placeholder              {@content;}
+}
+
+@mixin position($position, $pos, $vals) {
+  position: $position;
+  @each $p in $pos {
+    $i: index($pos, $p);
+    #{$p}: nth($vals, $i);
+  }
+}
+
+@mixin transform($args...) {
+  -webkit-transform: $args;
+  -moz-transform: $args;
+  -ms-transform: $args;
+  -o-transform: $args;
+  transform: $args;
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin transform-origin($args...) {
+  -webkit-transform-origin: $args;
+  -moz-transform-origin: $args;
+  -ms-transform-origin: $args;
+  -o-transform-origin: $args;
+  transform-origin: $args;
+}
+
+@mixin noscrollbar{
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+      width: 0px;
+      height: 0;
+      padding: 0;
+      display: none;
+      margin: 0;
+      border: none;
+      background: transparent;
+  }
+}
+
+@mixin no-highlight {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@mixin plain-number-input {
+    -moz-appearance: textfield;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
+
+@mixin box-shadow($properties) {
+    -webkit-box-shadow: $properties;
+    -moz-box-shadow: $properties;
+    box-shadow: $properties;
+}
+
+@mixin background($size) {
+    background-position: center;
+    background-size: $size;
+    background-repeat: no-repeat;
+}
+
+@mixin trim-ends($property: margin) {
+    &:first-child {
+        #{$property}-left: 0;
+    }
+    &:last-child {
+        #{$property}-right: 0;
+    }
+}
+
+@mixin increase-width($offset) {
+    width: calc(100% + #{$offset * 2});
+    position: relative;
+    left: -$offset;
+}
+
+
+
+/*
+    responsive-property mixin
+    Adds automatic small-desktop & tablet breakpoints based on the desktop + mobile dimensions
+    - Parameters: 1 SCSS list containing multiple SCSS lists
+    - Usage:
+        @include responsive-property((
+        ($property, $desktop-dimension, $mobile-dimension),
+        (margin-top, 60px, 30px),
+        (height, 100px, 50px)
+        ))
+    - Important: When only adding in one responsive property, add a comma to the end of the list to avoid SCSS errors
+*/
+
+@mixin responsive-property($property-value-lists) {
+    @each $property-value-list in $property-value-lists {
+        $property: nth($property-value-list, 1);
+        $desktop-dimension: nth($property-value-list, 2);
+        #{$property}: $desktop-dimension;
+    }
+    @include small-desktop {
+        @each $property-value-list in $property-value-lists {
+            $property: nth($property-value-list, 1);
+            $desktop-dimension: nth($property-value-list, 2);
+            $mobile-dimension: nth($property-value-list, 3);
+
+            $tablet-dimension: ($desktop-dimension + $mobile-dimension) / 2;
+            $small-desktop-dimension: (($desktop-dimension + $tablet-dimension) / 2);
+
+            #{$property}: $small-desktop-dimension;
+        }
+    }
+    @include tablet {
+        @each $property-value-list in $property-value-lists {
+            $property: nth($property-value-list, 1);
+            $desktop-dimension: nth($property-value-list, 2);
+            $mobile-dimension: nth($property-value-list, 3);
+
+            $tablet-dimension: ($desktop-dimension + $mobile-dimension) / 2;
+
+            #{$property}: $tablet-dimension;
+        }
+    }
+    @include mobile-large {
+        @each $property-value-list in $property-value-lists {
+            $property: nth($property-value-list, 1);
+            $mobile-dimension: nth($property-value-list, 3);
+            #{$property}: $mobile-dimension;
+        }
+    }
+}
+
+
+/*
+    responsive-property-liquid mixin
+
+    Adds automatic small-desktop & tablet breakpoints based on the desktop + mobile dimensions
+    - 3 Parameters: property, schema settings id containing desktop dimension value, schema settings id containing mobile dimension value
+    - Usage:
+        @include responsive-property-liquid(font-size, font_size_title_xl, font_size_title_xl_mobile)
+*/
+
+@mixin responsive-property-liquid($property, $desktop-setting-id, $mobile-setting-id) {
+    $desktop-dimension: liquid("{{ settings.#{$desktop-setting-id} | append: 'px' }}");
+    $mobile-dimension: liquid("{{ settings.#{$mobile-setting-id} | append: 'px' }}");
+    $tablet-dimension: liquid("{{ settings.#{$desktop-setting-id} | plus: settings.#{$mobile-setting-id} | divided_by: 2 | append: 'px' }}");
+    $small-desktop-dimension: liquid("{% assign tablet_dimension = settings.#{$desktop-setting-id} | plus: settings.#{$mobile-setting-id} | divided_by: 2 %}{{ settings.#{$desktop-setting-id} | plus: tablet_dimension | divided_by: 2 | append: 'px' }}");
+    #{$property}: $desktop-dimension;
+    @include small-desktop {
+        #{$property}: $small-desktop-dimension;
+    }
+    @include tablet {
+        #{$property}: $tablet-dimension;
+    }
+    @include mobile-large {
+        #{$property}: $mobile-dimension;
+    }
+}
+
+@mixin grid-item-width($container-width, $columns, $margin, $important: false) {
+    @if $important == true {
+        width:calc((#{$container-width} / #{$columns}) - #{$margin}) !important
+    } @else {
+        width:calc((#{$container-width} / #{$columns}) - #{$margin})
+    }
+}
+
+@mixin filter($value) {
+  -webkit-filter: $value;
+  -moz-filter: $value;
+  -o-filter: $value;
+  filter: $value;
+}
+
+@mixin megamenu-hover-trigger($height: 30px) {
+    &:before {
+        content:'';
+        width:100%;
+        height:$height;
+        top:-$height;
+        left:0;
+        position: absolute;
+    }
+}
+
+@mixin circle ($width) {
+    width:$width;
+    height:$width;
+    border-radius: 100%;
+}
+
+@mixin animation($args...) {
+  -webkit-animation: $args;
+  animation: $args;
+}
+
+@mixin absolute-center {
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    margin:auto
+}
+
+@mixin overlay ($opacity: false, $color:false) {
+    content:'';
+    position: absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    z-index: $z-middle;
+    @if $color != false {
+        background-color: $color;
+    }
+    @if $opacity != false {
+        opacity:$opacity;
+    }
+}
+
+@mixin header-based-property($property: margin-top, $minus: false) {
+    @if $minus == true {
+        #{$property}: -$height-header;
+        @include small-desktop {
+            #{$property}: -$height-header-mobile;
+        }
+        .promo-enabled & {
+            #{$property}: -$height-header-full;
+            @include small-desktop {
+                #{$property}: -$height-header-full-mobile;
+            }
+        }
+    } @else {
+        #{$property}: $height-header;
+        @include small-desktop {
+            #{$property}: $height-header-mobile;
+        }
+        .promo-enabled & {
+            #{$property}: $height-header-full;
+            @include small-desktop {
+                #{$property}: $height-header-full-mobile;
+            }
+        }
+    }
+}
+
+@mixin icon($icon, $size: contain) {
+    background-image: $icon;
+    background-size: $size;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@mixin hover($transition: $transition-default-2) {
+    @include above-tablet {
+        @if $transition != false {
+            @include transition($transition)
+        }
+        &:hover {
+            @content;
+        }
+    }
+}
+
+@mixin sideways {
+    @include transform(rotate(90deg));
+    @include flexbox;
+    @include align-items(flex-end);
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    * {
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility !important;
+    }
+}

@@ -1,0 +1,24 @@
+{% assign article_image_dimensions = '100x100' %}
+
+<div class="single-article">
+    <a href="{{ article.url }}" class="single-article__image object-cover">
+        {% if article.image contains '.jpg' %}
+            <img data-preload="{{ article.image | img_url: article_image_dimensions }}" src="{{ article.image | img_url: 100x, format: 'pjpg' }}" alt="{{ article.image.alt }}">
+        {% else %}
+            <img data-preload="{{ article.image | img_url: article_image_dimensions }}" src="{{ article.image | img_url: 100x }}" alt="{{ article.image.alt }}">
+        {% endif %}
+    </a>
+    <h2 class="single-article__title"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+    {%- unless hide_excerpt -%}
+        <div class="single-article__excerpt rte">
+            {% if article.excerpt.size > 0 %}
+                <p>{{ article.excerpt | strip_html | truncatewords: 45 }}</p>
+            {% else %}
+              <p>
+                {{ article.content | strip_html | truncatewords: 45 }}
+              </p>
+            {% endif %}
+        </div>
+    {%- endunless -%}
+    <a href="{{ article.url }}" class="single-article__link">{{ 'blogs.read_more' | t }}</a>
+</div>

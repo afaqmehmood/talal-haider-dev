@@ -1,0 +1,15 @@
+<div class="product-quantity flex f-vertical-center">
+    <button class="product-quantity__button" data-quantity='{ "action": "decrease" }'>{%- include 'icons', icon: 'minus' -%}</button>
+    <input
+    type="number"
+    id="productQuantity"
+    value="{% if item %}{{ item.quantity }}{% else %}1{% endif %}"
+    min="1"
+    {% if product.selected_or_first_available_variant.inventory_policy == 'deny' %} max="{{ product.selected_or_first_available_variant.inventory_quantity }}"{% endif %}
+    class="product-quantity__input"
+    data-product-quantity
+    data-quantity='{ "event": "keyup" }'
+    {%- if item -%} data-cart-update='{ "action": "updateQuantity", "variantID": {{ item.id }}, "event": "change" }'{%- endif -%}
+    >
+    <button class="product-quantity__button" data-quantity='{ "action": "increase" }'>{%- include 'icons', icon: 'plus' -%}</button>
+</div>

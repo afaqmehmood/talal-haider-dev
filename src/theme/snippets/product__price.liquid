@@ -1,0 +1,10 @@
+<p class="{% if class %}{{ class }} {% endif %}product-price">
+    <span{% if product.price < product.compare_at_price %} class="product-price--sale"{% endif %}>
+        {{ product.price | money }}
+    </span>
+    {% if product.price < product.compare_at_price %}
+        <span class="product-price--original">
+            {{ product.compare_at_price | money }}
+        </span>
+    {% endif %}
+</p>

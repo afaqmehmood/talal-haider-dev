@@ -1,0 +1,54 @@
+// ---------------------------------------------
+//    body
+// ---------------------------------------------
+body {
+
+}
+
+
+
+// ---------------------------------------------
+//    Container
+// ---------------------------------------------
+@mixin container-width ($width: $size-container, $padding: $spacing-border, $padding-mobile: $spacing-border-mobile, $padding-small-desktop: $spacing-border-small-desktop) {
+    width: $width + ($padding * 2);
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left:$padding;
+    padding-right:$padding;
+    @include small-desktop {
+        padding-left: $padding-small-desktop;
+        padding-right:$padding-small-desktop
+    }
+    @include mobile-large {
+        padding-left:$padding-mobile;
+        padding-right: $padding-mobile
+    }
+}
+
+.container {
+    @include container-width;
+
+    &--sm {
+        @include container-width($size-container-sm);
+    }
+    &--no-padding {
+        @extend .container;
+        padding-left:0;
+        padding-right: 0;
+    }
+}
+
+
+
+
+main {
+    .shopify-section:last-child section {
+        margin-bottom:0px;
+    }
+    section {
+        @include responsive-property(((margin-top, $spacing-lg, $spacing-lg / 2),))
+        @include responsive-property(((margin-bottom, $spacing-lg, $spacing-lg / 2),))
+    }
+}
